@@ -23,8 +23,12 @@ yarn start
 Go to https://localhost:5006 in your browser and you'll see Actual.
 
 ## Running via Docker
-To run using a Docker container you can use following commands;
 
+### Download
+To run using a Docker container you can use following commands;
+docker run -p 5006:5006 kippenhof/actual-server
+### Build
+To run and build using a Docker container you can use following commands;
 ```
 git clone https://github.com/actualbudget/actual-server.git
 cd actual-server
