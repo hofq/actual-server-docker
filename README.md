@@ -1,3 +1,5 @@
+[![Docker Hub](https://github.com/hofq/actual-server-docker/actions/workflows/docker-image.yml/badge.svg)](https://github.com/hofq/actual-server-docker/actions/workflows/docker-image.yml)
+
 
 This is the main project to run [Actual](https://github.com/actualbudget/actual), a local-first personal finance tool. It comes with the latest version of Actual, and a server to persist changes and make data available across all devices.
 
