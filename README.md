@@ -26,7 +26,9 @@ Go to https://localhost:5006 in your browser and you'll see Actual.
 
 ### Download
 To run using a Docker container you can use following commands;
-docker run -p 5006:5006 kippenhof/actual-server
+  
+`docker run -p 5006:5006 kippenhof/actual-server`
+
 ### Build
 To run and build using a Docker container you can use following commands;
 ```
