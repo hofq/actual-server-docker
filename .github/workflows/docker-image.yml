@@ -27,3 +27,9 @@ jobs:
         with:
           push: true
           tags: kippenhof/actual-server:latest
+      -
+        name: Build and push Alpine
+        uses: docker/build-push-action@v2
+        with:
+          push: true
+          tags: kippenhof/actual-server:latest-alpine
