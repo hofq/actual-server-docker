@@ -24,7 +24,7 @@ jobs:
       - name: Declare some variables
         id: vars
         shell: bash
-        run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
+        run: echo "::set-output name=sha_short::$(github.sha)::7"
       -
         name: Build and push
         uses: docker/build-push-action@v2
