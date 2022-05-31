@@ -21,16 +21,21 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
+          
+      - name: Set outputs
+        id: vars
+        run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
+        
       -
         name: Build and push
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: kippenhof/actual-server:latest
+          tags: kippenhof/actual-server:latest , kippenhof/actual-server:${{ steps.vars.outputs.sha_short }}
       -
         name: Build and push Alpine
         uses: docker/build-push-action@v2
         with:
           file: ./Dockerfile.alpine
           push: true
-          tags: kippenhof/actual-server:latest-alpine
+          tags: kippenhof/actual-server:latest-alpine , kippenhof/actual-server:${{ steps.vars.outputs.sha_short }}-alpine
