@@ -22,7 +22,7 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       - name: Declare some variables
-       id: vars
+        id: vars
         shell: bash
         run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
       -
