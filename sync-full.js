@@ -15,7 +15,7 @@ const sync = sequential(async function syncAPI(messages, since, fileId) {
     await actual.internal.send('load-budget', { id: fileId });
   }
 
-  const messagesDeserialized = messages.map(envPb => {
+  messages = messages.map(envPb => {
     let timestamp = envPb.getTimestamp();
     let msg = SyncPb.Message.deserializeBinary(envPb.getContent());
     return {
@@ -27,23 +27,11 @@ const sync = sequential(async function syncAPI(messages, since, fileId) {
     };
   });
 
-  const newMessages = await actual.internal.syncAndReceiveMessages(messagesDeserialized, since);
+  let newMessages = actual.internal.syncAndReceiveMessages(messages, since);
 
   return {
     trie: actual.internal.timestamp.getClock().merkle,
-    newMessages: newMessages.map(msg => {
-      const envelopePb = new SyncPb.MessageEnvelope();
-
-      const messagePb = new SyncPb.Message();
-      messagePb.setDataset(msg.dataset);
-      messagePb.setRow(msg.row);
-      messagePb.setColumn(msg.column);
-      messagePb.setValue(msg.value);
-      envelopePb.setTimestamp(msg.timestamp);
-
-      envelopePb.setContent(messagePb.serializeBinary());
-      return envelopePb;
-    })
+    newMessages: newMessages
   };
 });
 
